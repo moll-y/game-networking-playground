@@ -11,8 +11,8 @@ fn main() -> std::io::Result<()> {
     let (number_of_bytes, src_address) = socket.recv_from(&mut buf).expect("didn't receive data");
     let buf = &mut buf[..number_of_bytes];
 
-    let socket_ip = socket.local_addr().unwrap();
-    println!("{}: {} sent a message: {:?}", socket_ip, src_address, buf);
+    let socket_address = socket.local_addr().unwrap();
+    println!("{}: {} sent a message: {:?}", socket_address, src_address, buf);
 
     // Send ten packets to the server
     for x in 1..11 {

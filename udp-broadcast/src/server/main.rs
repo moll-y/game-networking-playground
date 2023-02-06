@@ -17,12 +17,12 @@ fn main() -> std::io::Result<()> {
         .send_to(&buf, "255.255.255.255:6000")
         .expect("couldn't send message");
 
-    let socket_ip = socket.local_addr().unwrap();
+    let socket_address = socket.local_addr().unwrap();
 
     println!("waiting for messages");
     while let Ok((number_of_bytes, src_address)) = socket.recv_from(&mut buf) {
         let buf = &mut buf[..number_of_bytes];
-        println!("{}: {} sent a message: {:?}", socket_ip, src_address, buf);
+        println!("{}: {} sent a message: {:?}", socket_address, src_address, buf);
     }
 
     Ok(())
